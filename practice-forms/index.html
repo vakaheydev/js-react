@@ -70,26 +70,29 @@
             var phoneColor = this.state.phoneValid===true?"green":"red";
             var ageColor = this.state.ageValid===true?"green":"red";
             var emailColor = this.state.emailValid===true?"green":"red";
-            <h1>Форма заказа</h1>
             return (
-                <form onSubmit={this.handleSubmit}>
-                    <p>
-                        <label>Телефон:</label><br />
-                        <input type="text" value={this.state.phone} 
-                            onChange={this.onPhoneChange} style={{borderColor:phoneColor}} />
-                    </p>
-                    <p>
-                        <label>Возраст:</label><br />
-                        <input type="number" value={this.state.age} 
-                            onChange={this.onAgeChange}  style={{borderColor:ageColor}} />
-                    </p>
-                    <p>
-                        <label>Эл. почта:</label><br />
-                        <input type="email" value={this.state.email} 
-                            onChange={this.onEmailChange}  style={{borderColor:emailColor}} />
-                    </p>
-                    <input type="submit" value="Отправить" />
-                </form>
+                <div>
+                    <h1>Форма заказа</h1>
+                    <form onSubmit={this.handleSubmit}>
+                        <p>
+                            <label>Телефон:</label><br />
+                            <input type="text" value={this.state.phone} 
+                                onChange={this.onPhoneChange} style={{borderColor:phoneColor}} />
+                        </p>
+                        <p>
+                            <label>Возраст:</label><br />
+                            <input type="number" value={this.state.age} 
+                                onChange={this.onAgeChange}  style={{borderColor:ageColor}} />
+                        </p>
+                        <p>
+                            <label>Эл. почта:</label><br />
+                            <input type="email" value={this.state.email} 
+                                onChange={this.onEmailChange}  style={{borderColor:emailColor}} />
+                        </p>
+                        <input type="submit" value="Отправить" />
+                    </form>
+                </div>
+                
             );
         }
     }
