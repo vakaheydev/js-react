@@ -15,15 +15,15 @@
     class UserForm extends React.Component {
       constructor(props) {
         super(props);
-        var name = "";
-        var nameIsValid = this.validateName(name);
+        var phone = "";
+        var phoneIsValid = this.validatePhone(phone);
         var age = 0;
         var ageIsValid = this.validateAge(age);
         var email = "";
         var emailIsValid = this.validateEmail(email);
-        this.state = {name: name, age: age, nameValid: nameIsValid, ageValid: ageIsValid, email: email, emailValid: emailIsValid};
+        this.state = {phone: phone, age: age, phoneValid: phoneIsValid, ageValid: ageIsValid, email: email, emailValid: emailIsValid};
    
-        this.onNameChange = this.onNameChange.bind(this);
+        this.onPhoneChange = this.onPhoneChange.bind(this);
         this.onAgeChange = this.onAgeChange.bind(this);
         this.onEmailChange = this.onEmailChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -31,8 +31,9 @@
         validateAge(age){
             return age>=0;
         }
-        validateName(name){
-            return name.length>2;
+        validatePhone(phone){
+            const validPhone = new RegExp(/^(\+7)\d{10}$/);
+            return validPhone.test(phone);
         }
         validateEmail(email) {
             const validEmail = new RegExp('^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$');
@@ -43,11 +44,11 @@
             var valid = this.validateAge(val);
             this.setState({age: val, ageValid: valid});
         }
-        onNameChange(e) {
+        onPhoneChange(e) {
             var val = e.target.value;
             console.log(val);
-            var valid = this.validateName(val);
-            this.setState({name: val, nameValid: valid});
+            var valid = this.validatePhone(val);
+            this.setState({phone: val, phoneValid: valid});
         }
 
         onEmailChange(e) {
@@ -58,23 +59,24 @@
    
         handleSubmit(e) {
             e.preventDefault();
-            if(this.state.nameValid ===true && this.state.ageValid===true && this.state.emailValid === true){
-                alert(`Имя: ${this.state.name} Возраст: ${this.state.age} Email: ${this.state.email}`);
+            if(this.state.phoneValid ===true && this.state.ageValid===true && this.state.emailValid === true){
+                alert(`Телефон: ${this.state.phone} Возраст: ${this.state.age} Email: ${this.state.email}`);
             } else {
                 alert('Ошибка валидации!');
             }
         }
    
         render() {
-            var nameColor = this.state.nameValid===true?"green":"red";
+            var phoneColor = this.state.phoneValid===true?"green":"red";
             var ageColor = this.state.ageValid===true?"green":"red";
             var emailColor = this.state.emailValid===true?"green":"red";
+            <h1>Форма заказа</h1>
             return (
                 <form onSubmit={this.handleSubmit}>
                     <p>
-                        <label>Имя:</label><br />
-                        <input type="text" value={this.state.name} 
-                            onChange={this.onNameChange} style={{borderColor:nameColor}} />
+                        <label>Телефон:</label><br />
+                        <input type="text" value={this.state.phone} 
+                            onChange={this.onPhoneChange} style={{borderColor:phoneColor}} />
                     </p>
                     <p>
                         <label>Возраст:</label><br />
