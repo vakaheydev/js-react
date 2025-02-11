@@ -9,7 +9,7 @@ import styles from "../styles/MainPage.module.css";
 
 export default function MainPage() {
     return (
-        <div>
+        <div className={styles['container']}>
             <header>
                 <div className={styles['image-container']}>
                     <img src={logo}></img>
